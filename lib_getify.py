@@ -43,3 +43,9 @@ class getify:
     
     self.all_tracks[index].yt_hash = result_links[0]
 
+
+  def remove_spaces(track_info):
+    track_name = re.sub("\s+", "+", track_info.title.strip())
+    track_artist = re.sub("\s+", "+", track_info.artist.strip())
+
+    return f"{track_name}+{track_artist}"
