@@ -39,15 +39,16 @@ class getify:
 
   #! get youtube audio link for given track
   def yt_link(self, index):
-    track_yt = f"https://www.youtube.com/results?search_query={remove_spaces(self.all_tracks[index])}+official+audio"
+    track_yt = f"https://www.youtube.com/results?search_query={remove_spaces(self.all_tracks[index], '+')}+official+audio"
     html = urllib.request.urlopen(track_yt)
     result_links = re.findall(r"watch\?v=(\S{11})", html.read().decode())
     
     self.all_tracks[index].yt_hash = result_links[0]
 
 
-  def remove_spaces(track_info):
-    track_name = re.sub("\s+", "+", track_info.title.strip())
-    track_artist = re.sub("\s+", "+", track_info.artist.strip())
+  #! replaces space char with + for passed track
+  def remove_spaces(track_info, chr):
+    track_name = re.sub("\s+", "chr", track_info.title.strip())
+    track_artist = re.sub("\s+", "chr", track_info.artist.strip())
 
     return f"{track_name}+{track_artist}"
