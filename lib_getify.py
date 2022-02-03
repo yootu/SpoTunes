@@ -20,16 +20,18 @@ class getify:
     
     page_data = urllib.request.urlopen(self.link).read()
     page_soup = soup(page_data, 'html.parser')
-    all_track_details = page_soup.findAll('div', {'class':'tracklist-col name'})
+    all_track_details = page_soup.findAll('div', {'class':'h4HgbO_Uu1JYg5UGANeQ wTUruPetkKdWAR1dd6w4'})
 
     track_index = 0
 
     for single_track in all_track_details:
       track_index += 1
       new_track = lib_track.Track(track_index)
-      #
-      #TODO get details for track into
-      #
+      
+      new_track.title = single_track.findAll('div', {'class': 't_yrXoUO3qGsJS4Y6iXX standalone-ellipsis-one-line w_Xs9cRXMwmQHw8BpiID'})
+      new_track.artist = single_track.findAll('span', {'class':'rq2VQ5mb9SDAFWbBIUIn standalone-ellipsis-one-line Hi9FqPX1LNRRPf31tfA8'})
+      new_track.album = single_track.findAll('a', {'class':'standalone-ellipsis-one-line'})
+
       all_tracks.append(new_track)
 
     self.all_tracks = tuple(all_tracks)
