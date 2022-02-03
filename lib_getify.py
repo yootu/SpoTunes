@@ -48,3 +48,7 @@ class getify:
     track_artist = re.sub("\s+", "chr", track_info.artist.strip())
 
     return f"{track_name}+{track_artist}"
+
+
+#TODO
+#- create a method to look for data in the extracted <script> data
